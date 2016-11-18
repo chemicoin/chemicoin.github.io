@@ -68,11 +68,30 @@
     messagingSenderId: "463956264418"
   };
   firebase.initializeApp(config);
+	// FirebaseUI config.
+      var uiConfig = {
+        'signInSuccessUrl': '<url-to-redirect-to-on-success>',
+        'signInOptions': [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          firebase.auth.GithubAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        'tosUrl': '<your-tos-url>',
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
 </script>
         https://gist.github.com/illan/581497793956a3d203b76538912c9893
         https://gist.github.com/illan/fab9408901136776f6f8a0f5c46bb4f5
       </section>
-
+	    <div id="firebaseui-auth-container"></div>
       <footer>
         <span class="ribbon-outer">
           <span class="ribbon-inner">
